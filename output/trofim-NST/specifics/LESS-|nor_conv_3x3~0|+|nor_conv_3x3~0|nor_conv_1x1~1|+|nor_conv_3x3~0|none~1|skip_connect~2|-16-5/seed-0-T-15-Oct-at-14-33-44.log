@@ -1,0 +1,25 @@
+Start train-evaluate |nor_conv_3x3~0|+|nor_conv_3x3~0|nor_conv_1x1~1|+|nor_conv_3x3~0|none~1|skip_connect~2|
+arch_config : {'channel': 16, 'num_cells': 5}
+
+The 00/01-th seed is 111 ----------------------<.>----------------------
+Does not find the existing file output/trofim-NST/specifics/LESS-|nor_conv_3x3~0|+|nor_conv_3x3~0|nor_conv_1x1~1|+|nor_conv_3x3~0|none~1|skip_connect~2|-16-5/seed-0111.pth, train and evaluate!
+configs/nas-benchmark/LESS.config
+Configure(scheduler='cos', eta_min=0.0, epochs=12, warmup=0, optim='SGD', LR=0.1, decay=0.0005, momentum=0.9, nesterov=True, criterion='Softmax', batch_size=256, class_num=100, xshape=(1, 3, 32, 32))
+Evaluate ||||||| cifar100   ||||||| Train-Num=50000, Valid-Num=10000, Train-Loader-Num=196, Valid-Loader-Num=40, batch size=256
+Evaluate ||||||| cifar100   ||||||| Config=Configure(scheduler='cos', eta_min=0.0, epochs=12, warmup=0, optim='SGD', LR=0.1, decay=0.0005, momentum=0.9, nesterov=True, criterion='Softmax', batch_size=256, class_num=100, xshape=(1, 3, 32, 32))
+Evaluate ---->>>> ori-test   with 40 batchs
+Evaluate ---->>>> x-valid    with 20 batchs
+Evaluate ---->>>> x-test     with 20 batchs
+[2020-10-15 14:33:47] Seed-------------------------- 111 --------------------------
+FLOP = 117.88938 MB, Param = 0.836276 MB
+[2020-10-15 14:34:16] Time Left: [00:05:17] epoch=000/012 :: Train [loss=-2.56649, acc@1=7.69%, acc@5=24.62%] Valid [loss=-7.01314, acc@1=9.16%, acc@5=28.88%]
+[2020-10-15 14:34:44] Time Left: [00:04:42] epoch=001/012 :: Train [loss=-8.16459, acc@1=20.06%, acc@5=49.47%] Valid [loss=-7.85128, acc@1=12.28%, acc@5=33.48%]
+[2020-10-15 14:35:11] Time Left: [00:04:11] epoch=002/012 :: Train [loss=-9.39882, acc@1=29.86%, acc@5=62.80%] Valid [loss=-9.43919, acc@1=23.56%, acc@5=53.08%]
+[2020-10-15 14:35:39] Time Left: [00:03:43] epoch=003/012 :: Train [loss=-10.28670, acc@1=36.90%, acc@5=70.56%] Valid [loss=-10.61488, acc@1=31.44%, acc@5=66.00%]
+[2020-10-15 14:36:06] Time Left: [00:03:14] epoch=004/012 :: Train [loss=-10.81016, acc@1=41.47%, acc@5=74.79%] Valid [loss=-10.53409, acc@1=27.34%, acc@5=60.82%]
+[2020-10-15 14:36:35] Time Left: [00:02:47] epoch=005/012 :: Train [loss=-11.14283, acc@1=45.41%, acc@5=77.94%] Valid [loss=-10.82931, acc@1=33.18%, acc@5=64.42%]
+[2020-10-15 14:37:02] Time Left: [00:02:19] epoch=006/012 :: Train [loss=-11.39291, acc@1=48.63%, acc@5=80.32%] Valid [loss=-11.61816, acc@1=42.92%, acc@5=74.94%]
+[2020-10-15 14:37:30] Time Left: [00:01:51] epoch=007/012 :: Train [loss=-11.60497, acc@1=51.93%, acc@5=82.65%] Valid [loss=-11.48347, acc@1=40.72%, acc@5=73.48%]
+[2020-10-15 14:37:57] Time Left: [00:01:23] epoch=008/012 :: Train [loss=-11.77465, acc@1=54.82%, acc@5=84.57%] Valid [loss=-12.18595, acc@1=49.20%, acc@5=80.44%]
+[2020-10-15 14:38:26] Time Left: [00:00:55] epoch=009/012 :: Train [loss=-11.93023, acc@1=57.82%, acc@5=86.32%] Valid [loss=-12.38907, acc@1=52.32%, acc@5=82.10%]
+[2020-10-15 14:38:53] Time Left: [00:00:27] epoch=010/012 :: Train [loss=-12.04936, acc@1=60.23%, acc@5=87.51%] Valid [loss=-12.55875, acc@1=56.52%, acc@5=84.32%]

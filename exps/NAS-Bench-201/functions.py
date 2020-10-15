@@ -135,15 +135,18 @@ def evaluate_for_seed(arch_config, config, arch, train_loader, valid_loaders, se
   from models import get_cell_based_tiny_net # this module is in AutoDL-Projects/lib/models
 
   if kd_params:
-    adir = '/home/trofim/resnet.cifar10.pth'
+    adir = kd_params['teacher_path']
     checkpoint = torch.load(adir)
-    state = checkpoint['cifar10-valid']['net_state_dict']
+    state = checkpoint[kd_params['teacher_dataset']]['net_state_dict']
+
+    if kd_params['teacher_dataset'] == 'cifar100':
+        num_classes = 100
 
     teacher_config = {'name': 'infer.tiny',
    'C': 16,
    'N': 5,
    'arch_str': '|nor_conv_3x3~0|+|none~0|nor_conv_3x3~1|+|skip_connect~0|none~1|skip_connect~2|',
-   'num_classes': 10}
+   'num_classes': num_classes}
 
     network = get_cell_based_tiny_net(teacher_config) # create the network from configurration
     network.load_state_dict(state)
@@ -210,7 +213,7 @@ def evaluate_for_seed(arch_config, config, arch, train_loader, valid_loaders, se
                'valid_acc1es': valid_acc1es,
                'valid_acc5es': valid_acc5es,
                'valid_times' : valid_times,
-               'net_state_dict': net.state_dict(),
+               #'net_state_dict': net.state_dict(),
                'net_string'  : '{:}'.format(net),
                'finish-train': True
               }

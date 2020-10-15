@@ -1,0 +1,40 @@
+Start train-evaluate |skip_connect~0|+|none~0|avg_pool_3x3~1|+|nor_conv_3x3~0|none~1|nor_conv_1x1~2|
+arch_config : {'channel': 16, 'num_cells': 5}
+
+The 00/01-th seed is 111 ----------------------<.>----------------------
+Does not find the existing file output/trofim-NST/specifics/LESS-|skip_connect~0|+|none~0|avg_pool_3x3~1|+|nor_conv_3x3~0|none~1|nor_conv_1x1~2|-16-5/seed-0111.pth, train and evaluate!
+configs/nas-benchmark/LESS.config
+Configure(scheduler='cos', eta_min=0.0, epochs=12, warmup=0, optim='SGD', LR=0.1, decay=0.0005, momentum=0.9, nesterov=True, criterion='Softmax', batch_size=256, class_num=100, xshape=(1, 3, 32, 32))
+Evaluate ||||||| cifar100   ||||||| Train-Num=50000, Valid-Num=10000, Train-Loader-Num=196, Valid-Loader-Num=40, batch size=256
+Evaluate ||||||| cifar100   ||||||| Config=Configure(scheduler='cos', eta_min=0.0, epochs=12, warmup=0, optim='SGD', LR=0.1, decay=0.0005, momentum=0.9, nesterov=True, criterion='Softmax', batch_size=256, class_num=100, xshape=(1, 3, 32, 32))
+Evaluate ---->>>> ori-test   with 40 batchs
+Evaluate ---->>>> x-valid    with 20 batchs
+Evaluate ---->>>> x-test     with 20 batchs
+[2020-10-15 14:28:55] Seed-------------------------- 111 --------------------------
+FLOP = 47.1105 MB, Param = 0.350196 MB
+[2020-10-15 14:29:16] Time Left: [00:03:51] epoch=000/012 :: Train [loss=-0.04389, acc@1=5.78%, acc@5=19.97%] Valid [loss=-5.60758, acc@1=7.56%, acc@5=25.84%]
+[2020-10-15 14:29:36] Time Left: [00:03:26] epoch=001/012 :: Train [loss=-7.18311, acc@1=17.42%, acc@5=44.66%] Valid [loss=-7.81285, acc@1=16.12%, acc@5=43.22%]
+[2020-10-15 14:29:56] Time Left: [00:03:04] epoch=002/012 :: Train [loss=-8.64939, acc@1=26.61%, acc@5=58.31%] Valid [loss=-8.43047, acc@1=19.52%, acc@5=49.20%]
+[2020-10-15 14:30:16] Time Left: [00:02:43] epoch=003/012 :: Train [loss=-9.47394, acc@1=32.80%, acc@5=65.93%] Valid [loss=-9.30452, acc@1=22.36%, acc@5=53.04%]
+[2020-10-15 14:30:37] Time Left: [00:02:22] epoch=004/012 :: Train [loss=-10.15795, acc@1=37.73%, acc@5=71.21%] Valid [loss=-10.16064, acc@1=27.84%, acc@5=59.28%]
+[2020-10-15 14:30:57] Time Left: [00:02:02] epoch=005/012 :: Train [loss=-10.59126, acc@1=41.81%, acc@5=75.19%] Valid [loss=-10.27145, acc@1=30.70%, acc@5=62.04%]
+[2020-10-15 14:31:17] Time Left: [00:01:41] epoch=006/012 :: Train [loss=-10.90137, acc@1=45.12%, acc@5=77.88%] Valid [loss=-10.64592, acc@1=32.14%, acc@5=64.24%]
+[2020-10-15 14:31:37] Time Left: [00:01:21] epoch=007/012 :: Train [loss=-11.13964, acc@1=48.24%, acc@5=80.11%] Valid [loss=-11.39676, acc@1=41.66%, acc@5=74.76%]
+[2020-10-15 14:31:58] Time Left: [00:01:01] epoch=008/012 :: Train [loss=-11.33367, acc@1=50.77%, acc@5=82.19%] Valid [loss=-11.41013, acc@1=41.18%, acc@5=73.98%]
+[2020-10-15 14:32:18] Time Left: [00:00:40] epoch=009/012 :: Train [loss=-11.48739, acc@1=53.57%, acc@5=83.90%] Valid [loss=-11.90068, acc@1=48.32%, acc@5=80.48%]
+[2020-10-15 14:32:40] Time Left: [00:00:20] epoch=010/012 :: Train [loss=-11.60097, acc@1=55.64%, acc@5=85.19%] Valid [loss=-12.04476, acc@1=51.42%, acc@5=81.92%]
+[2020-10-15 14:33:00] Time Left: [00:00:00] epoch=011/012 :: Train [loss=-11.67261, acc@1=57.10%, acc@5=85.98%] Valid [loss=-12.15717, acc@1=52.72%, acc@5=82.82%]
+Python  Version  : 3.7.7 (default, Mar 26 2020, 15:48:22)  [GCC 7.3.0]
+Pillow  Version  : 7.0.0
+PyTorch Version  : 1.4.0
+cuDNN   Version  : 7603
+CUDA available   : True
+CUDA GPU numbers : 1
+CUDA_VISIBLE_DEVICES=0
+
+--------------- dataset : cifar100 ---------------
+Flops = 47.1105 MB, Params = 0.350196 MB
+config : OrderedDict([('scheduler', 'cos'), ('eta_min', 0.0), ('epochs', 12), ('warmup', 0), ('optim', 'SGD'), ('LR', 0.1), ('decay', 0.0005), ('momentum', 0.9), ('nesterov', True), ('criterion', 'Softmax'), ('batch_size', 256), ('class_num', 100), ('xshape', (1, 3, 32, 32))])
+Training State (finish) = True
+
+<<<***>>> The 00/01-th seed is 111 <finish> other procedures need Time Left: [00:00:00]

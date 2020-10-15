@@ -1,0 +1,18 @@
+Start train-evaluate |skip_connect~0|+|avg_pool_3x3~0|nor_conv_1x1~1|+|none~0|nor_conv_3x3~1|nor_conv_3x3~2|
+arch_config : {'channel': 16, 'num_cells': 5}
+
+The 00/01-th seed is 111 ----------------------<.>----------------------
+Does not find the existing file output/trofim-NST/specifics/LESS-|skip_connect~0|+|avg_pool_3x3~0|nor_conv_1x1~1|+|none~0|nor_conv_3x3~1|nor_conv_3x3~2|-16-5/seed-0111.pth, train and evaluate!
+configs/nas-benchmark/LESS.config
+Configure(scheduler='cos', eta_min=0.0, epochs=12, warmup=0, optim='SGD', LR=0.1, decay=0.0005, momentum=0.9, nesterov=True, criterion='Softmax', batch_size=256, class_num=100, xshape=(1, 3, 32, 32))
+Evaluate ||||||| cifar100   ||||||| Train-Num=50000, Valid-Num=10000, Train-Loader-Num=196, Valid-Loader-Num=40, batch size=256
+Evaluate ||||||| cifar100   ||||||| Config=Configure(scheduler='cos', eta_min=0.0, epochs=12, warmup=0, optim='SGD', LR=0.1, decay=0.0005, momentum=0.9, nesterov=True, criterion='Softmax', batch_size=256, class_num=100, xshape=(1, 3, 32, 32))
+Evaluate ---->>>> ori-test   with 40 batchs
+Evaluate ---->>>> x-valid    with 20 batchs
+Evaluate ---->>>> x-test     with 20 batchs
+[2020-10-15 14:37:23] Seed-------------------------- 111 --------------------------
+FLOP = 82.49994 MB, Param = 0.593236 MB
+[2020-10-15 14:37:49] Time Left: [00:04:43] epoch=000/012 :: Train [loss=-0.00922, acc@1=6.49%, acc@5=22.25%] Valid [loss=-4.74072, acc@1=5.76%, acc@5=22.02%]
+[2020-10-15 14:38:13] Time Left: [00:04:10] epoch=001/012 :: Train [loss=-7.18374, acc@1=16.53%, acc@5=43.74%] Valid [loss=-7.52924, acc@1=12.04%, acc@5=37.48%]
+[2020-10-15 14:38:38] Time Left: [00:03:43] epoch=002/012 :: Train [loss=-8.66452, acc@1=25.11%, acc@5=57.22%] Valid [loss=-8.48861, acc@1=14.82%, acc@5=40.98%]
+[2020-10-15 14:39:02] Time Left: [00:03:17] epoch=003/012 :: Train [loss=-9.57758, acc@1=31.41%, acc@5=65.05%] Valid [loss=-9.09849, acc@1=20.02%, acc@5=48.18%]
