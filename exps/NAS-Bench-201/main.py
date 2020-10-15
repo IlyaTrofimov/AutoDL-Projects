@@ -20,7 +20,7 @@ from models       import CellStructure, CellArchitectures, get_search_spaces
 from functions    import evaluate_for_seed
 
 
-def evaluate_all_datasets(arch, datasets, xpaths, splits, use_less, seed, arch_config, workers, logger):
+def evaluate_all_datasets(arch, datasets, xpaths, splits, use_less, seed, arch_config, workers, logger, kd_params):
   machine_info, arch_config = get_machine_info(), deepcopy(arch_config)
   all_infos = {'info': machine_info}
   all_dataset_keys = []
@@ -82,14 +82,14 @@ def evaluate_all_datasets(arch, datasets, xpaths, splits, use_less, seed, arch_c
     logger.log('Evaluate ||||||| {:10s} ||||||| Config={:}'.format(dataset_key, config))
     for key, value in ValLoaders.items():
       logger.log('Evaluate ---->>>> {:10s} with {:} batchs'.format(key, len(value)))
-    results = evaluate_for_seed(arch_config, config, arch, train_loader, ValLoaders, seed, logger)
+    results = evaluate_for_seed(arch_config, config, arch, train_loader, ValLoaders, seed, logger, kd_params)
     all_infos[dataset_key] = results
     all_dataset_keys.append( dataset_key )
   all_infos['all_dataset_keys'] = all_dataset_keys
   return all_infos
 
 
-def main(save_dir, workers, datasets, xpaths, splits, use_less, srange, arch_index, seeds, cover_mode, meta_info, arch_config):
+def main(save_dir, workers, datasets, xpaths, splits, use_less, srange, arch_index, seeds, cover_mode, meta_info, arch_config, kd_params):
   assert torch.cuda.is_available(), 'CUDA is not available.'
   torch.backends.cudnn.enabled   = True
   #torch.backends.cudnn.benchmark = True
@@ -97,7 +97,7 @@ def main(save_dir, workers, datasets, xpaths, splits, use_less, srange, arch_ind
   torch.set_num_threads( workers )
 
   assert len(srange) == 2 and 0 <= srange[0] <= srange[1], 'invalid srange : {:}'.format(srange)
-  
+
   if use_less:
     sub_dir = Path(save_dir) / '{:06d}-{:06d}-C{:}-N{:}-LESS'.format(srange[0], srange[1], arch_config['channel'], arch_config['num_cells'])
   else:
@@ -120,7 +120,7 @@ def main(save_dir, workers, datasets, xpaths, splits, use_less, srange, arch_ind
   for i, (dataset, xpath, split) in enumerate(zip(datasets, xpaths, splits)):
     logger.log('--->>> Evaluate {:}/{:} : dataset={:9s}, path={:}, split={:}'.format(i, len(datasets), dataset, xpath, split))
   logger.log('--->>> architecture config : {:}'.format(arch_config))
-  
+
 
   start_time, epoch_time = time.time(), AverageMeter()
   for i, index in enumerate(to_evaluate_indexes):
@@ -128,7 +128,7 @@ def main(save_dir, workers, datasets, xpaths, splits, use_less, srange, arch_ind
     logger.log('\n{:} evaluate {:06d}/{:06d} ({:06d}/{:06d})-th architecture [seeds={:}] {:}'.format('-'*15, i, len(to_evaluate_indexes), index, meta_info['total'], seeds, '-'*15))
     #logger.log('{:} {:} {:}'.format('-'*15, arch.tostr(), '-'*15))
     logger.log('{:} {:} {:}'.format('-'*15, arch, '-'*15))
-  
+
     # test this arch on different datasets with different seeds
     has_continue = False
     for seed in seeds:
@@ -143,7 +143,7 @@ def main(save_dir, workers, datasets, xpaths, splits, use_less, srange, arch_ind
           continue
       results = evaluate_all_datasets(CellStructure.str2structure(arch), \
                                         datasets, xpaths, splits, use_less, seed, \
-                                        arch_config, workers, logger)
+                                        arch_config, workers, logger, kd_params)
       torch.save(results, to_save_name)
       logger.log('{:} --evaluate-- {:06d}/{:06d} ({:06d}/{:06d})-th seed={:} done, save into {:}'.format('-'*15, i, len(to_evaluate_indexes), index, meta_info['total'], seed, to_save_name))
     # measure elapsed time
@@ -158,13 +158,13 @@ def main(save_dir, workers, datasets, xpaths, splits, use_less, srange, arch_ind
   logger.close()
 
 
-def train_single_model(save_dir, workers, datasets, xpaths, splits, use_less, seeds, model_str, arch_config):
+def train_single_model(save_dir, workers, datasets, xpaths, splits, use_less, seeds, model_str, arch_config, kd_params):
   assert torch.cuda.is_available(), 'CUDA is not available.'
   torch.backends.cudnn.enabled   = True
   torch.backends.cudnn.deterministic = True
   #torch.backends.cudnn.benchmark = True
   torch.set_num_threads( workers )
-  
+
   save_dir = Path(save_dir) / 'specifics' / '{:}-{:}-{:}-{:}'.format('LESS' if use_less else 'FULL', model_str, arch_config['channel'], arch_config['num_cells'])
   logger   = Logger(str(save_dir), 0, False)
   if model_str in CellArchitectures:
@@ -175,7 +175,7 @@ def train_single_model(save_dir, workers, datasets, xpaths, splits, use_less, se
       arch = CellStructure.str2structure(model_str)
     except:
       raise ValueError('Invalid model string : {:}. It can not be found or parsed.'.format(model_str))
-  assert arch.check_valid_op(get_search_spaces('cell', 'full')), '{:} has the invalid op.'.format(arch)
+  #assert arch.check_valid_op(get_search_spaces('cell', 'full')), '{:} has the invalid op.'.format(arch)
   logger.log('Start train-evaluate {:}'.format(arch.tostr()))
   logger.log('arch_config : {:}'.format(arch_config))
 
@@ -183,12 +183,15 @@ def train_single_model(save_dir, workers, datasets, xpaths, splits, use_less, se
   for _is, seed in enumerate(seeds):
     logger.log('\nThe {:02d}/{:02d}-th seed is {:} ----------------------<.>----------------------'.format(_is, len(seeds), seed))
     to_save_name = save_dir / 'seed-{:04d}.pth'.format(seed)
-    if to_save_name.exists():
+    #
+    # trofim: saving checkpoint
+    #
+    if to_save_name.exists() and False:
       logger.log('Find the existing file {:}, directly load!'.format(to_save_name))
       checkpoint = torch.load(to_save_name)
     else:
       logger.log('Does not find the existing file {:}, train and evaluate!'.format(to_save_name))
-      checkpoint = evaluate_all_datasets(arch, datasets, xpaths, splits, use_less, seed, arch_config, workers, logger)
+      checkpoint = evaluate_all_datasets(arch, datasets, xpaths, splits, use_less, seed, arch_config, workers, logger, kd_params)
       torch.save(checkpoint, to_save_name)
     # log information
     logger.log('{:}'.format(checkpoint['info']))
@@ -203,7 +206,14 @@ def train_single_model(save_dir, workers, datasets, xpaths, splits, use_less, se
       last_epoch = dataset_info['total_epoch'] - 1
       train_acc1es, train_acc5es = dataset_info['train_acc1es'], dataset_info['train_acc5es']
       valid_acc1es, valid_acc5es = dataset_info['valid_acc1es'], dataset_info['valid_acc5es']
-      logger.log('Last Info : Train = Acc@1 {:.2f}% Acc@5 {:.2f}% Error@1 {:.2f}%, Test = Acc@1 {:.2f}% Acc@5 {:.2f}% Error@1 {:.2f}%'.format(train_acc1es[last_epoch], train_acc5es[last_epoch], 100-train_acc1es[last_epoch], valid_acc1es[last_epoch], valid_acc5es[last_epoch], 100-valid_acc1es[last_epoch]))
+
+      print(train_acc1es)
+      print(train_acc5es)
+      print(valid_acc1es)
+      print(valid_acc5es)
+      print(last_epoch)
+
+      #logger.log('Last Info : Train = Acc@1 {:.2f}% Acc@5 {:.2f}% Error@1 {:.2f}%, Test = Acc@1 {:.2f}% Acc@5 {:.2f}% Error@1 {:.2f}%'.format(train_acc1es[last_epoch], train_acc5es[last_epoch], 100-train_acc1es[last_epoch], valid_acc1es[last_epoch], valid_acc5es[last_epoch], 100-valid_acc1es[last_epoch]))
     # measure elapsed time
     seed_time.update(time.time() - start_time)
     start_time = time.time()
@@ -219,14 +229,14 @@ def generate_meta_info(save_dir, max_node, divide=40):
 
   random.seed( 88 ) # please do not change this line for reproducibility
   random.shuffle( archs )
-  # to test fixed-random shuffle 
+  # to test fixed-random shuffle
   #print ('arch [0] : {:}\n---->>>>   {:}'.format( archs[0], archs[0].tostr() ))
   #print ('arch [9] : {:}\n---->>>>   {:}'.format( archs[9], archs[9].tostr() ))
   assert archs[0  ].tostr() == '|avg_pool_3x3~0|+|nor_conv_1x1~0|skip_connect~1|+|nor_conv_1x1~0|skip_connect~1|skip_connect~2|', 'please check the 0-th architecture : {:}'.format(archs[0])
   assert archs[9  ].tostr() == '|avg_pool_3x3~0|+|none~0|none~1|+|skip_connect~0|none~1|nor_conv_3x3~2|', 'please check the 9-th architecture : {:}'.format(archs[9])
   assert archs[123].tostr() == '|avg_pool_3x3~0|+|avg_pool_3x3~0|nor_conv_1x1~1|+|none~0|avg_pool_3x3~1|nor_conv_3x3~2|', 'please check the 123-th architecture : {:}'.format(archs[123])
   total_arch = len(archs)
-  
+
   num = 50000
   indexes_5W = list(range(num))
   random.seed( 1021 )
@@ -289,9 +299,22 @@ if __name__ == '__main__':
   parser.add_argument('--seeds'  ,     type=int,   nargs='+',      help='The range of models to be evaluated')
   parser.add_argument('--channel',     type=int,                   help='The number of channels.')
   parser.add_argument('--num_cells',   type=int,                   help='The number of cells in one stage.')
+  parser.add_argument('--kd',          type=str,   default = ''    )
+  parser.add_argument('--feat_from',   type=int,   default = -10   )
+  parser.add_argument('--feat_to',     type=int,   default = -10   )
+  parser.add_argument('--fmask',       type=str,   default = ''    )
   args = parser.parse_args()
 
   assert args.mode in ['meta', 'new', 'cover'] or args.mode.startswith('specific-'), 'invalid mode : {:}'.format(args.mode)
+
+  if args.kd:
+    kd_params = {}
+    kd_params['type'] = args.kd
+    kd_params['feat_from'] = args.feat_from
+    kd_params['feat_to'] = args.feat_to
+    kd_params['fmask'] = args.fmask
+  else:
+    kd_params = None
 
   if args.mode == 'meta':
     generate_meta_info(args.save_dir, args.max_node)
@@ -299,7 +322,7 @@ if __name__ == '__main__':
     assert len(args.mode.split('-')) == 2, 'invalid mode : {:}'.format(args.mode)
     model_str = args.mode.split('-')[1]
     train_single_model(args.save_dir, args.workers, args.datasets, args.xpaths, args.splits, args.use_less>0, \
-                         tuple(args.seeds), model_str, {'channel': args.channel, 'num_cells': args.num_cells})
+                         tuple(args.seeds), model_str, {'channel': args.channel, 'num_cells': args.num_cells}, kd_params)
   else:
     meta_path = Path(args.save_dir) / 'meta-node-{:}.pth'.format(args.max_node)
     assert meta_path.exists(), '{:} does not exist.'.format(meta_path)
@@ -309,7 +332,7 @@ if __name__ == '__main__':
     assert len(args.seeds) > 0, 'invalid length of seeds args: {:}'.format(args.seeds)
     assert len(args.datasets) == len(args.xpaths) == len(args.splits), 'invalid infos : {:} vs {:} vs {:}'.format(len(args.datasets), len(args.xpaths), len(args.splits))
     assert args.workers > 0, 'invalid number of workers : {:}'.format(args.workers)
-  
+
     main(args.save_dir, args.workers, args.datasets, args.xpaths, args.splits, args.use_less>0, \
            tuple(args.srange), args.arch_index, tuple(args.seeds), \
            args.mode == 'cover', meta_info, \
