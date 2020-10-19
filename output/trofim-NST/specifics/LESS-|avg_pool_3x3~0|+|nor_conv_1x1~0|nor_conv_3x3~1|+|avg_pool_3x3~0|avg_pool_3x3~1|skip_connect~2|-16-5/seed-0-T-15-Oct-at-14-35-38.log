@@ -21,3 +21,20 @@ FLOP = 47.1105 MB, Param = 0.350196 MB
 [2020-10-15 14:38:13] Time Left: [00:01:47] epoch=006/012 :: Train [loss=-1.52640, acc@1=14.71%, acc@5=39.35%] Valid [loss=-0.03939, acc@1=6.66%, acc@5=22.86%]
 [2020-10-15 14:38:34] Time Left: [00:01:26] epoch=007/012 :: Train [loss=-2.04514, acc@1=16.36%, acc@5=41.88%] Valid [loss=-1.14179, acc@1=9.66%, acc@5=28.76%]
 [2020-10-15 14:38:55] Time Left: [00:01:04] epoch=008/012 :: Train [loss=-2.53901, acc@1=17.74%, acc@5=43.83%] Valid [loss=-1.68977, acc@1=10.84%, acc@5=34.44%]
+[2020-10-15 14:39:17] Time Left: [00:00:42] epoch=009/012 :: Train [loss=-2.92796, acc@1=18.92%, acc@5=45.69%] Valid [loss=-2.29537, acc@1=12.18%, acc@5=34.86%]
+[2020-10-15 14:39:38] Time Left: [00:00:21] epoch=010/012 :: Train [loss=-3.14751, acc@1=19.82%, acc@5=46.58%] Valid [loss=-3.02785, acc@1=18.12%, acc@5=43.86%]
+[2020-10-15 14:40:00] Time Left: [00:00:00] epoch=011/012 :: Train [loss=-3.23422, acc@1=20.32%, acc@5=47.35%] Valid [loss=-3.17241, acc@1=19.78%, acc@5=46.26%]
+Python  Version  : 3.7.7 (default, Mar 26 2020, 15:48:22)  [GCC 7.3.0]
+Pillow  Version  : 7.0.0
+PyTorch Version  : 1.4.0
+cuDNN   Version  : 7603
+CUDA available   : True
+CUDA GPU numbers : 1
+CUDA_VISIBLE_DEVICES=0
+
+--------------- dataset : cifar100 ---------------
+Flops = 47.1105 MB, Params = 0.350196 MB
+config : OrderedDict([('scheduler', 'cos'), ('eta_min', 0.0), ('epochs', 12), ('warmup', 0), ('optim', 'SGD'), ('LR', 0.1), ('decay', 0.0005), ('momentum', 0.9), ('nesterov', True), ('criterion', 'Softmax'), ('batch_size', 256), ('class_num', 100), ('xshape', (1, 3, 32, 32))])
+Training State (finish) = True
+
+<<<***>>> The 00/01-th seed is 111 <finish> other procedures need Time Left: [00:00:00]

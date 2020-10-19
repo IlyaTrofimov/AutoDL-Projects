@@ -13,3 +13,28 @@ Evaluate ---->>>> x-test     with 20 batchs
 [2020-10-15 14:38:59] Seed-------------------------- 111 --------------------------
 FLOP = 7.7889 MB, Param = 0.079156 MB
 [2020-10-15 14:39:14] Time Left: [00:02:40] epoch=000/012 :: Train [loss=25.97881, acc@1=3.28%, acc@5=13.22%] Valid [loss=20.42218, acc@1=4.14%, acc@5=16.16%]
+[2020-10-15 14:39:29] Time Left: [00:02:30] epoch=001/012 :: Train [loss=18.86036, acc@1=4.44%, acc@5=17.71%] Valid [loss=16.45676, acc@1=4.60%, acc@5=18.70%]
+[2020-10-15 14:39:43] Time Left: [00:02:13] epoch=002/012 :: Train [loss=17.55988, acc@1=4.85%, acc@5=18.64%] Valid [loss=16.28027, acc@1=5.40%, acc@5=20.00%]
+[2020-10-15 14:39:58] Time Left: [00:01:57] epoch=003/012 :: Train [loss=16.07890, acc@1=5.84%, acc@5=20.43%] Valid [loss=14.41389, acc@1=6.54%, acc@5=22.10%]
+[2020-10-15 14:40:12] Time Left: [00:01:42] epoch=004/012 :: Train [loss=14.14776, acc@1=6.75%, acc@5=22.79%] Valid [loss=14.00487, acc@1=7.14%, acc@5=22.58%]
+[2020-10-15 14:40:26] Time Left: [00:01:27] epoch=005/012 :: Train [loss=13.32264, acc@1=7.08%, acc@5=23.30%] Valid [loss=13.03485, acc@1=6.04%, acc@5=22.18%]
+[2020-10-15 14:40:41] Time Left: [00:01:12] epoch=006/012 :: Train [loss=12.59468, acc@1=7.26%, acc@5=23.67%] Valid [loss=12.06766, acc@1=7.24%, acc@5=22.80%]
+[2020-10-15 14:40:55] Time Left: [00:00:58] epoch=007/012 :: Train [loss=11.93392, acc@1=8.00%, acc@5=25.20%] Valid [loss=11.39264, acc@1=7.32%, acc@5=24.24%]
+[2020-10-15 14:41:09] Time Left: [00:00:43] epoch=008/012 :: Train [loss=11.35254, acc@1=8.38%, acc@5=26.06%] Valid [loss=11.02713, acc@1=6.84%, acc@5=24.36%]
+[2020-10-15 14:41:24] Time Left: [00:00:28] epoch=009/012 :: Train [loss=10.88453, acc@1=8.94%, acc@5=26.74%] Valid [loss=10.48435, acc@1=7.66%, acc@5=25.66%]
+[2020-10-15 14:41:38] Time Left: [00:00:14] epoch=010/012 :: Train [loss=10.70541, acc@1=9.27%, acc@5=27.34%] Valid [loss=10.38241, acc@1=8.14%, acc@5=25.86%]
+[2020-10-15 14:41:52] Time Left: [00:00:00] epoch=011/012 :: Train [loss=10.65796, acc@1=9.42%, acc@5=27.59%] Valid [loss=10.31074, acc@1=8.16%, acc@5=25.80%]
+Python  Version  : 3.7.7 (default, Mar 26 2020, 15:48:22)  [GCC 7.3.0]
+Pillow  Version  : 7.0.0
+PyTorch Version  : 1.4.0
+cuDNN   Version  : 7603
+CUDA available   : True
+CUDA GPU numbers : 1
+CUDA_VISIBLE_DEVICES=0
+
+--------------- dataset : cifar100 ---------------
+Flops = 7.7889 MB, Params = 0.079156 MB
+config : OrderedDict([('scheduler', 'cos'), ('eta_min', 0.0), ('epochs', 12), ('warmup', 0), ('optim', 'SGD'), ('LR', 0.1), ('decay', 0.0005), ('momentum', 0.9), ('nesterov', True), ('criterion', 'Softmax'), ('batch_size', 256), ('class_num', 100), ('xshape', (1, 3, 32, 32))])
+Training State (finish) = True
+
+<<<***>>> The 00/01-th seed is 111 <finish> other procedures need Time Left: [00:00:00]

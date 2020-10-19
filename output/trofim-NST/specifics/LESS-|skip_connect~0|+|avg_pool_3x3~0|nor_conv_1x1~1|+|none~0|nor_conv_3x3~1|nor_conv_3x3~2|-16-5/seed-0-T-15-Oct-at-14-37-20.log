@@ -16,3 +16,25 @@ FLOP = 82.49994 MB, Param = 0.593236 MB
 [2020-10-15 14:38:13] Time Left: [00:04:10] epoch=001/012 :: Train [loss=-7.18374, acc@1=16.53%, acc@5=43.74%] Valid [loss=-7.52924, acc@1=12.04%, acc@5=37.48%]
 [2020-10-15 14:38:38] Time Left: [00:03:43] epoch=002/012 :: Train [loss=-8.66452, acc@1=25.11%, acc@5=57.22%] Valid [loss=-8.48861, acc@1=14.82%, acc@5=40.98%]
 [2020-10-15 14:39:02] Time Left: [00:03:17] epoch=003/012 :: Train [loss=-9.57758, acc@1=31.41%, acc@5=65.05%] Valid [loss=-9.09849, acc@1=20.02%, acc@5=48.18%]
+[2020-10-15 14:39:27] Time Left: [00:02:52] epoch=004/012 :: Train [loss=-10.25489, acc@1=36.70%, acc@5=70.12%] Valid [loss=-9.74162, acc@1=23.60%, acc@5=55.54%]
+[2020-10-15 14:39:51] Time Left: [00:02:27] epoch=005/012 :: Train [loss=-10.69633, acc@1=40.72%, acc@5=74.20%] Valid [loss=-10.39666, acc@1=29.48%, acc@5=61.58%]
+[2020-10-15 14:40:15] Time Left: [00:02:02] epoch=006/012 :: Train [loss=-10.99697, acc@1=44.19%, acc@5=77.15%] Valid [loss=-10.88728, acc@1=33.54%, acc@5=65.42%]
+[2020-10-15 14:40:40] Time Left: [00:01:38] epoch=007/012 :: Train [loss=-11.24469, acc@1=47.76%, acc@5=79.87%] Valid [loss=-11.31821, acc@1=39.00%, acc@5=73.40%]
+[2020-10-15 14:41:04] Time Left: [00:01:13] epoch=008/012 :: Train [loss=-11.43183, acc@1=50.41%, acc@5=81.99%] Valid [loss=-11.66871, acc@1=43.02%, acc@5=75.04%]
+[2020-10-15 14:41:28] Time Left: [00:00:48] epoch=009/012 :: Train [loss=-11.60159, acc@1=53.45%, acc@5=83.86%] Valid [loss=-12.01122, acc@1=48.68%, acc@5=80.28%]
+[2020-10-15 14:41:53] Time Left: [00:00:24] epoch=010/012 :: Train [loss=-11.71477, acc@1=55.71%, acc@5=85.30%] Valid [loss=-12.22289, acc@1=52.10%, acc@5=82.44%]
+[2020-10-15 14:42:17] Time Left: [00:00:00] epoch=011/012 :: Train [loss=-11.79266, acc@1=57.27%, acc@5=86.24%] Valid [loss=-12.33454, acc@1=53.82%, acc@5=83.20%]
+Python  Version  : 3.7.7 (default, Mar 26 2020, 15:48:22)  [GCC 7.3.0]
+Pillow  Version  : 7.0.0
+PyTorch Version  : 1.4.0
+cuDNN   Version  : 7603
+CUDA available   : True
+CUDA GPU numbers : 1
+CUDA_VISIBLE_DEVICES=0
+
+--------------- dataset : cifar100 ---------------
+Flops = 82.49994 MB, Params = 0.593236 MB
+config : OrderedDict([('scheduler', 'cos'), ('eta_min', 0.0), ('epochs', 12), ('warmup', 0), ('optim', 'SGD'), ('LR', 0.1), ('decay', 0.0005), ('momentum', 0.9), ('nesterov', True), ('criterion', 'Softmax'), ('batch_size', 256), ('class_num', 100), ('xshape', (1, 3, 32, 32))])
+Training State (finish) = True
+
+<<<***>>> The 00/01-th seed is 111 <finish> other procedures need Time Left: [00:00:00]

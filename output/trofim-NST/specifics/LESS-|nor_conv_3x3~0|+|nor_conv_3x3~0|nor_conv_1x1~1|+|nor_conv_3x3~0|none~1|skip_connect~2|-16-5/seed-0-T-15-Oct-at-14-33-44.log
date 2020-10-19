@@ -23,3 +23,18 @@ FLOP = 117.88938 MB, Param = 0.836276 MB
 [2020-10-15 14:37:57] Time Left: [00:01:23] epoch=008/012 :: Train [loss=-11.77465, acc@1=54.82%, acc@5=84.57%] Valid [loss=-12.18595, acc@1=49.20%, acc@5=80.44%]
 [2020-10-15 14:38:26] Time Left: [00:00:55] epoch=009/012 :: Train [loss=-11.93023, acc@1=57.82%, acc@5=86.32%] Valid [loss=-12.38907, acc@1=52.32%, acc@5=82.10%]
 [2020-10-15 14:38:53] Time Left: [00:00:27] epoch=010/012 :: Train [loss=-12.04936, acc@1=60.23%, acc@5=87.51%] Valid [loss=-12.55875, acc@1=56.52%, acc@5=84.32%]
+[2020-10-15 14:39:21] Time Left: [00:00:00] epoch=011/012 :: Train [loss=-12.13079, acc@1=61.95%, acc@5=88.73%] Valid [loss=-12.64080, acc@1=56.88%, acc@5=85.20%]
+Python  Version  : 3.7.7 (default, Mar 26 2020, 15:48:22)  [GCC 7.3.0]
+Pillow  Version  : 7.0.0
+PyTorch Version  : 1.4.0
+cuDNN   Version  : 7603
+CUDA available   : True
+CUDA GPU numbers : 1
+CUDA_VISIBLE_DEVICES=0
+
+--------------- dataset : cifar100 ---------------
+Flops = 117.88938 MB, Params = 0.836276 MB
+config : OrderedDict([('scheduler', 'cos'), ('eta_min', 0.0), ('epochs', 12), ('warmup', 0), ('optim', 'SGD'), ('LR', 0.1), ('decay', 0.0005), ('momentum', 0.9), ('nesterov', True), ('criterion', 'Softmax'), ('batch_size', 256), ('class_num', 100), ('xshape', (1, 3, 32, 32))])
+Training State (finish) = True
+
+<<<***>>> The 00/01-th seed is 111 <finish> other procedures need Time Left: [00:00:00]

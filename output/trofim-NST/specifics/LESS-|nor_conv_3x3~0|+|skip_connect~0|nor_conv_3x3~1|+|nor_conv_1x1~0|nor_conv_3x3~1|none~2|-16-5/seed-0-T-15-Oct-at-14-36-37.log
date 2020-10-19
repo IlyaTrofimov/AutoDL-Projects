@@ -17,3 +17,24 @@ FLOP = 117.88938 MB, Param = 0.836276 MB
 [2020-10-15 14:38:05] Time Left: [00:04:11] epoch=002/012 :: Train [loss=-9.24863, acc@1=27.46%, acc@5=60.98%] Valid [loss=-9.20730, acc@1=19.80%, acc@5=48.58%]
 [2020-10-15 14:38:32] Time Left: [00:03:42] epoch=003/012 :: Train [loss=-10.07436, acc@1=34.62%, acc@5=68.62%] Valid [loss=-9.74626, acc@1=24.28%, acc@5=56.18%]
 [2020-10-15 14:39:00] Time Left: [00:03:14] epoch=004/012 :: Train [loss=-10.57836, acc@1=39.65%, acc@5=73.37%] Valid [loss=-10.81463, acc@1=34.94%, acc@5=67.32%]
+[2020-10-15 14:39:27] Time Left: [00:02:46] epoch=005/012 :: Train [loss=-10.91605, acc@1=43.64%, acc@5=76.66%] Valid [loss=-11.05331, acc@1=37.48%, acc@5=70.52%]
+[2020-10-15 14:39:54] Time Left: [00:02:18] epoch=006/012 :: Train [loss=-11.18825, acc@1=47.17%, acc@5=79.55%] Valid [loss=-11.31555, acc@1=39.36%, acc@5=72.00%]
+[2020-10-15 14:40:22] Time Left: [00:01:50] epoch=007/012 :: Train [loss=-11.40418, acc@1=50.12%, acc@5=81.43%] Valid [loss=-11.61019, acc@1=43.10%, acc@5=74.20%]
+[2020-10-15 14:40:49] Time Left: [00:01:22] epoch=008/012 :: Train [loss=-11.58874, acc@1=53.34%, acc@5=83.58%] Valid [loss=-11.99229, acc@1=47.96%, acc@5=79.84%]
+[2020-10-15 14:41:17] Time Left: [00:00:55] epoch=009/012 :: Train [loss=-11.74739, acc@1=56.09%, acc@5=85.40%] Valid [loss=-12.21424, acc@1=51.06%, acc@5=81.22%]
+[2020-10-15 14:41:44] Time Left: [00:00:27] epoch=010/012 :: Train [loss=-11.87179, acc@1=58.39%, acc@5=86.71%] Valid [loss=-12.38522, acc@1=55.72%, acc@5=83.58%]
+[2020-10-15 14:42:11] Time Left: [00:00:00] epoch=011/012 :: Train [loss=-11.95084, acc@1=60.35%, acc@5=87.72%] Valid [loss=-12.45321, acc@1=56.38%, acc@5=84.20%]
+Python  Version  : 3.7.7 (default, Mar 26 2020, 15:48:22)  [GCC 7.3.0]
+Pillow  Version  : 7.0.0
+PyTorch Version  : 1.4.0
+cuDNN   Version  : 7603
+CUDA available   : True
+CUDA GPU numbers : 1
+CUDA_VISIBLE_DEVICES=0
+
+--------------- dataset : cifar100 ---------------
+Flops = 117.88938 MB, Params = 0.836276 MB
+config : OrderedDict([('scheduler', 'cos'), ('eta_min', 0.0), ('epochs', 12), ('warmup', 0), ('optim', 'SGD'), ('LR', 0.1), ('decay', 0.0005), ('momentum', 0.9), ('nesterov', True), ('criterion', 'Softmax'), ('batch_size', 256), ('class_num', 100), ('xshape', (1, 3, 32, 32))])
+Training State (finish) = True
+
+<<<***>>> The 00/01-th seed is 111 <finish> other procedures need Time Left: [00:00:00]
